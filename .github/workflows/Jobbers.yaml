@@ -1,0 +1,31 @@
+name: Practices job staging 
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  job_1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "run on ${{ github.job }}"
+
+  job_2:
+    runs-on: windows-latest
+    needs: job_1
+    steps: 
+      - run: echo "run on ${{ github.job }}"
+
+  job_3:
+    runs-on: windows-latest
+    needs: job_2
+    steps: 
+      - run: echo "run on ${{ github.job }}"
+
+  job_4:
+    runs-on: windows-latest
+    needs: [job_2, job_3]
+    steps: 
+      - run: echo "run on ${{ github.job }}"
