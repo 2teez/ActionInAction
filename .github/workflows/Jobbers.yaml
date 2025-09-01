@@ -26,6 +26,6 @@ jobs:
 
   job_4:
     runs-on: ubuntu-latest
-    needs: [job_1, job_3]
+    needs: [job_3, job_1]
     steps: 
       - run: echo "run on ${{ github.job }}"
